@@ -1,0 +1,66 @@
+import { useEffect, useState } from "react";
+import { doc, getDoc } from "firebase/firestore";
+import { useNavigate, useParams } from "react-router-dom";
+import { Box, Button, Typography } from "@mui/material";
+
+import { db } from "../data/firebase";
+import Form from "../components/poll/Form";
+import { useAuthContext } from "../hooks/useAuthContext";
+
+const Poll = () => {
+  const [poll, setPoll] = useState();
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const { user } = useAuthContext();
+
+  useEffect(() => {
+    const getPoll = async () => {
+      const pollSnap = await getDoc(doc(db, "polls", id));
+      setPoll(pollSnap.data());
+    };
+    getPoll();
+  }, [id]);
+
+  return (
+    <Box pt={10} px={{ xs: 2, sm: 5, md: 20, lg: 35, xl: 55 }}>
+      <Typography variant="h5" textAlign="center" gutterBottom px={2}>
+        {poll && poll.title}
+      </Typography>
+      {poll &&
+        !poll.closed &&
+        (!poll.closeDate ||
+          (poll.closeDate && poll.closeDate.toDate() - Date.now() > 0)) && (
+          <Form poll={poll} pollId={id} />
+        )}
+      {poll &&
+        (poll.closed ||
+          (poll.closeDate && poll.closeDate.toDate() - Date.now() < 0)) && (
+          <Typography
+            variant="h6"
+            fontStyle="bold"
+            color="green"
+            textAlign="center"
+          >
+            Poll closed. Thank you for voting!
+          </Typography>
+        )}
+      {poll &&
+        (poll.results === "public" ||
+          (poll.closed &&
+            (poll.results === "vote" || poll.results === "closed")) ||
+          ((poll.results === "private" || poll.results === "closed") &&
+            user &&
+            poll.userId === user.id)) && (
+          <Box
+            textAlign="center"
+            my={2}
+            onClick={() => navigate(`/polls/${id}/results`)}
+          >
+            <Button variant="outlined">See results</Button>
+          </Box>
+        )}
+    </Box>
+  );
+};
+
+export default Poll;
