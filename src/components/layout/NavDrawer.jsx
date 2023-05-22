@@ -18,7 +18,7 @@ const NavDrawer = ({
         width: 240,
         "& .MuiDrawer-paper": {
           width: 300,
-          mt: 9,
+          mt: 8,
           boxSizing: "border-box",
         },
       }}
