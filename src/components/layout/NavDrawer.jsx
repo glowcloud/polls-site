@@ -14,11 +14,11 @@ const NavDrawer = ({
       variant="temporary"
       anchor="right"
       sx={{
-        display: { xs: "block", lg: "none" },
+        display: { xs: "block", md: "none" },
         width: 240,
         "& .MuiDrawer-paper": {
           width: 300,
-          mt: 8,
+          mt: { xs: 7, sm: 8 },
           boxSizing: "border-box",
         },
       }}
