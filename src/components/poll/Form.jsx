@@ -162,7 +162,7 @@ const Form = ({ poll, pollId }) => {
           size="large"
           sx={{ mt: 2 }}
         >
-          Submit
+          Vote
         </Button>
       </Box>
     </Box>

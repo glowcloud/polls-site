@@ -17,6 +17,7 @@ import {
   Radio,
   Input,
   FormHelperText,
+  Divider,
 } from "@mui/material";
 import { Cancel, Add } from "@mui/icons-material";
 import { db } from "../../data/firebase";
@@ -77,12 +78,7 @@ const Form = () => {
   };
 
   return (
-    <Box
-      component="form"
-      autoComplete="off"
-      py={3}
-      px={{ xs: 2, sm: 5, md: 20, lg: 35, xl: 55 }}
-    >
+    <Box component="form" autoComplete="off" py={3} px={{ xs: 3 }}>
       {/* TITLE */}
       <TextField
         label="Title"
@@ -102,7 +98,9 @@ const Form = () => {
       />
 
       {/* ANSWERS */}
-      <Typography mt={1}>Answer Options:</Typography>
+      <Typography variant="body2" mt={2}>
+        Answer Options:
+      </Typography>
       <List>
         {formState.answers.map((answer, index) => (
           <ListItem
@@ -167,8 +165,10 @@ const Form = () => {
         Add option
       </Button>
 
+      <Divider sx={{ mt: 2, mb: 3 }} />
+
       {/* MULTIPLE ANSWERS */}
-      <FormGroup sx={{ mt: 3, mb: 1 }}>
+      <FormGroup sx={{ mb: 1 }}>
         <FormControlLabel
           label="Allow multiple answers"
           control={
@@ -264,7 +264,9 @@ const Form = () => {
       </FormGroup>
 
       {/* VOTE VISIBILITY */}
-      <Typography sx={{ mt: 3 }}>Results visibility</Typography>
+      <Typography variant="body2" sx={{ mt: 3 }} gutterBottom>
+        Results visibility
+      </Typography>
       <FormControl required error={error} sx={{ pl: 2 }}>
         <RadioGroup
           onChange={(e) =>

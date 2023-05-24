@@ -131,10 +131,15 @@ const Results = () => {
   };
 
   return (
-    <Box py={5}>
+    <Box
+      component={Paper}
+      my={3}
+      py={3}
+      mx={{ xs: 2, sm: 5, md: 20, lg: 35, xl: 55 }}
+    >
       <Box textAlign="center" mb={2}>
         {/* TITLE */}
-        <Typography variant="h4" gutterBottom mx={2}>
+        <Typography variant="h4" fontWeight="bold" gutterBottom mx={2}>
           {poll && poll.title}
         </Typography>
         {poll &&
@@ -237,14 +242,15 @@ const Results = () => {
         responses.length > 0 &&
         (poll.results !== "private" ||
           (poll.results === "private" && user && poll.userId === user.id)) && (
-          <Box textAlign="center">
-            {/* CHARTS */}
+          <Box textAlign="center" mt={3}>
+            {/* CHART */}
+            <Divider sx={{ mb: 3 }} />
             <PieChart data={makeData(responses, poll)} layout={layout} />
-            <BarChart data={makeData(responses, poll)} layout={layout} />
 
             {/* RESPONSES */}
-            <Box mt={10} mx={2}>
-              <Typography variant="h4" fontStyle="bold" gutterBottom>
+            <Box mt={3}>
+              <Divider sx={{ mb: 3 }} />
+              <Typography variant="h5" fontWeight="bold" gutterBottom>
                 Responses
               </Typography>
               <Typography variant="h6" gutterBottom color="primary">
@@ -255,7 +261,7 @@ const Results = () => {
                   key={response.id}
                   component={Paper}
                   my={3}
-                  mx={{ xs: 0, sm: 5, md: 15, lg: 30, xl: 50 }}
+                  mx={2}
                   py={3}
                   px={2}
                   display="flex"
@@ -280,6 +286,18 @@ const Results = () => {
                 </Box>
               ))}
             </Box>
+          </Box>
+        )}
+      {poll &&
+        (!poll.closed ||
+          (poll.closeDate && poll.closeDate.toDate() - Date.now() > 0)) && (
+          <Box
+            textAlign="center"
+            my={2}
+            onClick={() => navigate(`/polls/${id}`)}
+          >
+            <Divider sx={{ my: 5 }} />
+            <Button variant="outlined">Back to poll</Button>
           </Box>
         )}
     </Box>

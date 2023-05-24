@@ -1,10 +1,20 @@
-import { Box } from "@mui/material";
+import { Box, Paper, Typography } from "@mui/material";
 import Form from "../components/create/Form";
 
 const CreatePoll = () => {
   return (
-    <Box>
-      <Form />
+    <Box my={5}>
+      <Typography
+        variant="h5"
+        textAlign="center"
+        fontWeight="bold"
+        gutterBottom
+      >
+        Create a Poll
+      </Typography>
+      <Paper sx={{ mx: { xs: 2, sm: 5, md: 20, lg: 35, xl: 55 }, mt: 2 }}>
+        <Form />
+      </Paper>
     </Box>
   );
 };

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { doc, getDoc } from "firebase/firestore";
 import { useNavigate, useParams } from "react-router-dom";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Paper, Typography } from "@mui/material";
 
 import { db } from "../data/firebase";
 import Form from "../components/poll/Form";
@@ -22,8 +22,26 @@ const Poll = () => {
   }, [id]);
 
   return (
-    <Box pt={10} px={{ xs: 2, sm: 5, md: 20, lg: 35, xl: 55 }}>
-      <Typography variant="h5" textAlign="center" gutterBottom px={2}>
+    <Box
+      component={Paper}
+      mt={
+        poll &&
+        !poll.closed &&
+        (!poll.closeDate ||
+          (poll.closeDate && poll.closeDate.toDate() - Date.now() > 0))
+          ? 10
+          : { xs: 30, xl: 35 }
+      }
+      mx={{ xs: 2, sm: 5, md: 20, lg: 35, xl: 55 }}
+      p={2}
+    >
+      <Typography
+        variant="h5"
+        textAlign="center"
+        fontWeight="bold"
+        gutterBottom
+        px={2}
+      >
         {poll && poll.title}
       </Typography>
       {poll &&
@@ -35,12 +53,7 @@ const Poll = () => {
       {poll &&
         (poll.closed ||
           (poll.closeDate && poll.closeDate.toDate() - Date.now() < 0)) && (
-          <Typography
-            variant="h6"
-            fontStyle="bold"
-            color="green"
-            textAlign="center"
-          >
+          <Typography variant="h6" color="green" textAlign="center">
             Poll closed. Thank you for voting!
           </Typography>
         )}

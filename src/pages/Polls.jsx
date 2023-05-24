@@ -9,6 +9,7 @@ import {
   ListItemButton,
   Typography,
   Button,
+  Paper,
 } from "@mui/material";
 import { db } from "../data/firebase";
 import { useAuthContext } from "../hooks/useAuthContext";
@@ -30,54 +31,68 @@ const Polls = () => {
   }, []);
 
   return (
-    <Box py={5} px={{ xs: 2, sm: 10, md: 15, lg: 20, xl: 30 }}>
+    <Box py={5} px={{ xs: 2, sm: 10, md: 15, lg: 20, xl: 45 }}>
       {polls && polls.length > 0 && (
-        <List>
-          {polls.map((poll, index) => (
-            <ListItem key={index}>
-              <ListItemButton
-                onClick={() => {
-                  navigate(`/polls/${poll.id}`);
-                }}
-                sx={{
-                  border: "1px solid",
-                  borderColor: "primary.main",
-                  borderRadius: 2,
-                  ".MuiListItemText-secondary": {
-                    color:
-                      poll.closed ||
-                      (poll.closeDate &&
-                        poll.closeDate.toDate() - Date.now() < 0)
-                        ? "error.main"
-                        : "primary.main",
-                  },
-                  "&:hover": {
-                    color: "white",
-                    backgroundColor: "#74d680",
+        <Typography
+          variant="h5"
+          textAlign="center"
+          fontWeight="bold"
+          gutterBottom
+          pb={2}
+        >
+          Your polls
+        </Typography>
+      )}
+      {polls && polls.length > 0 && (
+        <Paper sx={{ p: 2 }}>
+          <List>
+            {polls.map((poll, index) => (
+              <ListItem key={index}>
+                <ListItemButton
+                  onClick={() => {
+                    navigate(`/polls/${poll.id}`);
+                  }}
+                  sx={{
+                    border: "1px solid",
+                    borderColor: "primary.main",
+                    borderRadius: 2,
                     ".MuiListItemText-secondary": {
                       color:
                         poll.closed ||
                         (poll.closeDate &&
                           poll.closeDate.toDate() - Date.now() < 0)
                           ? "error.main"
-                          : "secondary.main",
+                          : "primary.main",
                     },
-                  },
-                }}
-              >
-                <ListItemText
-                  primary={poll.title}
-                  secondary={
-                    poll.closed ||
-                    (poll.closeDate && poll.closeDate.toDate() - Date.now() < 0)
-                      ? "Closed"
-                      : "Open"
-                  }
-                />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
+                    "&:hover": {
+                      color: "white",
+                      backgroundColor: "#74d680",
+                      ".MuiListItemText-secondary": {
+                        color:
+                          poll.closed ||
+                          (poll.closeDate &&
+                            poll.closeDate.toDate() - Date.now() < 0)
+                            ? "error.main"
+                            : "secondary.main",
+                      },
+                    },
+                  }}
+                >
+                  <ListItemText
+                    primary={poll.title}
+                    secondary={
+                      poll.closed ||
+                      (poll.closeDate &&
+                        poll.closeDate.toDate() - Date.now() < 0)
+                        ? "Closed"
+                        : "Open"
+                    }
+                  />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+        </Paper>
       )}
       {(!polls || polls.length === 0) && (
         <Box

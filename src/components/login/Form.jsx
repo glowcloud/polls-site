@@ -6,8 +6,7 @@ import { db } from "../../data/firebase";
 import { useAuthContext } from "../../hooks/useAuthContext";
 import { useNavigate } from "react-router-dom";
 
-const Form = () => {
-  const [isLogin, setIsLogin] = useState(true);
+const Form = ({ isLogin }) => {
   const [formState, setFormState] = useState({
     name: "",
     email: "",
@@ -68,12 +67,7 @@ const Form = () => {
   };
 
   return (
-    <Box
-      component="form"
-      autoComplete="off"
-      py={isLogin ? 30 : 21}
-      px={{ xs: 2, sm: 20, md: 35, lg: 55, xl: 75 }}
-    >
+    <Box component="form" autoComplete="off">
       {/* NAME */}
       {!isLogin && (
         <TextField
@@ -151,20 +145,6 @@ const Form = () => {
         >
           Submit
         </Button>
-      </Box>
-
-      <Box display="flex" justifyContent="center" alignItems="center">
-        <Typography
-          align="center"
-          onClick={() => setIsLogin((prevIsLogin) => !prevIsLogin)}
-          sx={{
-            "&:hover": { textDecoration: "underline", cursor: "pointer" },
-          }}
-        >
-          {isLogin
-            ? "Click here to create an account"
-            : "Already have an account?"}
-        </Typography>
       </Box>
     </Box>
   );

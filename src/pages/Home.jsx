@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <Box
       textAlign="center"
-      py={{ xs: 30, xl: 40 }}
+      py={{ xs: 35, xl: 40 }}
       px={{ xs: 2, sm: 10, md: 0 }}
     >
       <Typography
@@ -15,7 +15,7 @@ const Home = () => {
         gutterBottom
         pb={2}
         sx={{
-          fontWeight: "500",
+          fontWeight: "bold",
           color: "#378b29",
           backgroundImage: "linear-gradient(315deg, #378b29 0%, #74d680 74%)",
           WebkitBackgroundClip: "text",
