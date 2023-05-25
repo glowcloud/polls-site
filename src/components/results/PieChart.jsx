@@ -1,7 +1,7 @@
 import { ResponsivePie } from "@nivo/pie";
 import { Box } from "@mui/material";
 
-const PieChart = ({ data, layout }) => {
+const PieChart = ({ data }) => {
   return (
     <Box height={700 + data.length * 5}>
       <ResponsivePie
@@ -17,7 +17,6 @@ const PieChart = ({ data, layout }) => {
           from: "color",
           modifiers: [["darker", 0.2]],
         }}
-        enableArcLinkLabels={layout === "vertical"}
         arcLinkLabelsSkipAngle={10}
         arcLinkLabelsTextColor="#333333"
         arcLinkLabelsThickness={2}

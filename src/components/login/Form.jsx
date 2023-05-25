@@ -1,14 +1,15 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
-import { Box, Typography, TextField, Button } from "@mui/material";
+import { Box, Button } from "@mui/material";
 
 import { db } from "../../data/firebase";
 import { useAuthContext } from "../../hooks/useAuthContext";
-import { useNavigate } from "react-router-dom";
+import EmailField from "./EmailField";
+import PasswordField from "./PasswordField";
 
 const Form = ({ isLogin }) => {
   const [formState, setFormState] = useState({
-    name: "",
     email: "",
     password: "",
   });
@@ -23,12 +24,7 @@ const Form = ({ isLogin }) => {
   };
 
   const onSubmit = async () => {
-    if (
-      (!isLogin && !formState.name) ||
-      !formState.email ||
-      !formState.password ||
-      !isEmail(formState.email)
-    ) {
+    if (!formState.email || !formState.password || !isEmail(formState.email)) {
       setError(true);
     } else {
       const q = query(
@@ -68,74 +64,26 @@ const Form = ({ isLogin }) => {
 
   return (
     <Box component="form" autoComplete="off">
-      {/* NAME */}
-      {!isLogin && (
-        <TextField
-          label="Name"
-          sx={{ label: { color: "text.primary" }, my: 1 }}
-          fullWidth
-          required
-          type="text"
-          name="name"
-          error={error && !formState.name}
-          onChange={(e) =>
-            setFormState((prevForm) => {
-              return { ...prevForm, name: e.target.value };
-            })
-          }
-          helperText={error && !formState.name && "Name field required."}
-          value={formState.name || ""}
-        />
-      )}
-
       {/* EMAIL */}
-      <TextField
-        label="Email"
-        sx={{ label: { color: "text.primary" }, my: 1 }}
-        fullWidth
-        required
-        type="email"
-        name="email"
-        error={
-          (error && (!formState.email || !isEmail(formState.email))) ||
-          submitError
-        }
-        onChange={(e) =>
-          setFormState((prevForm) => {
-            return { ...prevForm, email: e.target.value };
-          })
-        }
-        helperText={
-          (error &&
-            ((!formState.email && "Email field required.") ||
-              (!isEmail(formState.email) && "Incorrect email."))) ||
-          (isLogin && submitError && "Incorrect email or password.") ||
-          (!isLogin && submitError && "Account with this email already exists.")
-        }
-        value={formState.email || ""}
+      <EmailField
+        formState={formState}
+        setFormState={setFormState}
+        error={error}
+        submitError={submitError}
+        isEmail={isEmail}
+        isLogin={isLogin}
       />
 
       {/* PASSWORD */}
-      <TextField
-        label="Password"
-        sx={{ label: { color: "text.primary" }, my: 1 }}
-        fullWidth
-        required
-        type="password"
-        name="password"
-        error={(error && !formState.password) || (isLogin && submitError)}
-        onChange={(e) =>
-          setFormState((prevForm) => {
-            return { ...prevForm, password: e.target.value };
-          })
-        }
-        helperText={
-          (error && !formState.password && "Password required.") ||
-          (isLogin && submitError && "Incorrect email or password.")
-        }
-        value={formState.password || ""}
+      <PasswordField
+        formState={formState}
+        setFormState={setFormState}
+        error={error}
+        submitError={submitError}
+        isLogin={isLogin}
       />
 
+      {/* SUBMIT */}
       <Box textAlign="center">
         <Button
           onClick={onSubmit}

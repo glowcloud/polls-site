@@ -26,6 +26,7 @@ const NavDrawer = ({
       onClose={handleMenuClick}
     >
       <List disablePadding sx={{ pt: 10 }}>
+        {/* NAV ITEMS */}
         {navItems.map((item) => (
           <ListItemButton key={item.title} sx={{ px: 3 }}>
             <ListItemText
@@ -41,6 +42,8 @@ const NavDrawer = ({
             />
           </ListItemButton>
         ))}
+        
+        {/* LOGOUT */}
         {user && (
           <ListItemButton sx={{ px: 3 }}>
             <ListItemText

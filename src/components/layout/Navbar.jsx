@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { AppBar, Toolbar, Box, Typography, IconButton } from "@mui/material";
+import { AppBar } from "@mui/material";
 
 import { useAuthContext } from "../../hooks/useAuthContext";
 import NavDrawer from "./NavDrawer";

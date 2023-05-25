@@ -1,5 +1,5 @@
-import { Box, Typography, Paper } from "@mui/material";
-import React, { useState } from "react";
+import { useState } from "react";
+import { Box, Typography, Paper, Link } from "@mui/material";
 import Form from "../components/login/Form";
 
 const Login = () => {
@@ -19,14 +19,17 @@ const Login = () => {
       <Paper
         sx={{ mx: { xs: 2, sm: 20, md: 35, lg: 55, xl: 75 }, py: 3, px: 2 }}
       >
+        {/* FORM */}
         <Form isLogin={isLogin} setIsLogin={setIsLogin} />
 
+        {/* LOGIN/SIGNUP SWAP */}
         <Box display="flex" justifyContent="center" alignItems="center">
           <Typography
+            component={Link}
             align="center"
             onClick={() => setIsLogin((prevIsLogin) => !prevIsLogin)}
             sx={{
-              "&:hover": { textDecoration: "underline", cursor: "pointer" },
+              "&:hover": { cursor: "pointer" },
             }}
           >
             {isLogin

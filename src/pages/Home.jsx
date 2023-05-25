@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <Box
       textAlign="center"
-      py={{ xs: 33, xl: 40 }}
+      py={{ xs: 28, lg: 33, xl: 40 }}
       px={{ xs: 2, sm: 10, md: 0 }}
     >
       <Typography

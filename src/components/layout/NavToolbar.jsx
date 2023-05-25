@@ -6,11 +6,11 @@ const NavToolbar = ({
   user,
   handleLogout,
   navigate,
-  pathname,
   handleMenuClick,
 }) => {
   return (
     <Toolbar sx={{ height: "100%" }}>
+      {/* NAME */}
       <Box
         sx={{ flexGrow: 1 }}
         display="flex"
@@ -31,6 +31,7 @@ const NavToolbar = ({
         </Typography>
       </Box>
 
+      {/* NAV ITEMS */}
       <Box display={{ xs: "none", md: "block" }} sx={{ height: "100%" }}>
         {navItems.map((item) => (
           <Button
@@ -49,6 +50,8 @@ const NavToolbar = ({
             {item.title}
           </Button>
         ))}
+
+        {/* LOGOUT */}
         {user && (
           <Button
             sx={{
@@ -67,6 +70,7 @@ const NavToolbar = ({
         )}
       </Box>
 
+      {/* MENU BUTTON */}
       <Box display={{ xs: "block", md: "none" }}>
         <IconButton color="inherit" onClick={handleMenuClick}>
           <Menu />

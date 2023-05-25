@@ -35,21 +35,35 @@ const Poll = () => {
       mx={{ xs: 2, sm: 5, md: 20, lg: 35, xl: 55 }}
       p={2}
     >
-      <Typography
-        variant="h5"
-        textAlign="center"
-        fontWeight="bold"
-        gutterBottom
-        px={2}
-      >
-        {poll && poll.title}
-      </Typography>
+      {/* NOT FOUND */}
+      {!poll && (
+        <Typography variant="h6" textAlign="center" color="red">
+          Poll not found
+        </Typography>
+      )}
+
+      {/* TITLE */}
+      {poll && (
+        <Typography
+          variant="h5"
+          textAlign="center"
+          fontWeight="bold"
+          gutterBottom
+          px={2}
+        >
+          {poll.title}
+        </Typography>
+      )}
+
+      {/* FORM */}
       {poll &&
         !poll.closed &&
         (!poll.closeDate ||
           (poll.closeDate && poll.closeDate.toDate() - Date.now() > 0)) && (
           <Form poll={poll} pollId={id} />
         )}
+
+      {/* CLOSED */}
       {poll &&
         (poll.closed ||
           (poll.closeDate && poll.closeDate.toDate() - Date.now() < 0)) && (
@@ -57,6 +71,8 @@ const Poll = () => {
             Poll closed. Thank you for voting!
           </Typography>
         )}
+
+      {/* RESULTS */}
       {poll &&
         (poll.results === "public" ||
           (poll.closed &&
