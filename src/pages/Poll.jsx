@@ -82,7 +82,7 @@ const Poll = () => {
             poll.userId === user.id)) && (
           <Box
             textAlign="center"
-            my={2}
+            mt={2}
             onClick={() => navigate(`/polls/${id}/results`)}
           >
             <Button variant="outlined">See results</Button>

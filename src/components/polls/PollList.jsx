@@ -30,18 +30,6 @@ const PollList = ({ polls }) => {
                       ? "error.main"
                       : "primary.main",
                 },
-                "&:hover": {
-                  color: "white",
-                  backgroundColor: "#74d680",
-                  ".MuiListItemText-secondary": {
-                    color:
-                      poll.closed ||
-                      (poll.closeDate &&
-                        poll.closeDate.toDate() - Date.now() < 0)
-                        ? "error.main"
-                        : "secondary.main",
-                  },
-                },
               }}
             >
               <ListItemText
