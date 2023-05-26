@@ -23,6 +23,9 @@ function App() {
         main: "#7c298b",
       },
     },
+    typography: {
+      fontFamily: ["Montserrat", "sans-serif"].join(","),
+    },
   });
 
   return (

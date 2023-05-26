@@ -87,8 +87,8 @@ const Results = () => {
 
       {/* BACK TO POLL */}
       {poll &&
-        (!poll.closed ||
-          (poll.closeDate && poll.closeDate.toDate() - Date.now() > 0)) && (
+        !poll.closed &&
+        (!poll.closeDate || poll.closeDate.toDate() - Date.now() > 0) && (
           <BackButton id={id} />
         )}
     </Box>
