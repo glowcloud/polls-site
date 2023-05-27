@@ -6,8 +6,11 @@ const Home = () => {
 
   return (
     <Box
-      textAlign="center"
-      py={{ xs: 28, lg: 33, xl: 40 }}
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+      justifyContent="center"
+      height="85vh"
       px={{ xs: 2, sm: 10, md: 0 }}
     >
       <Typography
@@ -15,6 +18,7 @@ const Home = () => {
         gutterBottom
         pb={2}
         sx={{
+          fontSize: { xs: "2.75rem", sm: "3.75rem" },
           fontWeight: "bold",
           color: "#378b29",
           backgroundImage: "linear-gradient(315deg, #378b29 0%, #74d680 74%)",

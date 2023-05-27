@@ -23,7 +23,7 @@ const Polls = () => {
   }, [user]);
 
   return (
-    <Box py={5} px={{ xs: 2, sm: 10, md: 15, lg: 20, xl: 45 }}>
+    <Box my={2} px={{ xs: 2, sm: 10, md: 15, lg: 20, xl: 45 }}>
       {polls && polls.length > 0 && (
         <Typography
           variant="h5"
@@ -41,7 +41,14 @@ const Polls = () => {
       {(!polls || polls.length === 0) && (
         <Box
           textAlign="center"
-          py={{ xs: 30, xl: 35 }}
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            marginRight: "-50%",
+            transform: "translate(-50%, -50%)",
+            width: "100%",
+          }}
           px={{ xs: 2, sm: 10, md: 0 }}
         >
           <Typography variant="h4" color="error" gutterBottom pb={2}>

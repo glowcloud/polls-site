@@ -1,6 +1,6 @@
 import { Box, Divider, Paper, Typography } from "@mui/material";
 
-const ResponsesList = ({ poll, responses }) => {
+const ResponsesList = ({ poll, responses, smallScreen }) => {
   return (
     <Box mt={3}>
       <Divider sx={{ mb: 3 }} />
@@ -8,7 +8,7 @@ const ResponsesList = ({ poll, responses }) => {
         Responses
       </Typography>
       <Typography variant="h6" gutterBottom color="primary">
-        Total votes: {responses.length}
+        Total responses: {responses.length}
       </Typography>
       {responses.map((response) => (
         <Box
@@ -21,16 +21,23 @@ const ResponsesList = ({ poll, responses }) => {
           display="flex"
           justifyContent="center"
           alignItems="center"
+          flexDirection={{ xs: "column", sm: "row" }}
         >
           <Typography
-            width={poll.comments ? "50%" : "100%"}
+            width={poll.comments && !smallScreen ? "50%" : "100%"}
             sx={{ wordBreak: "break-all", px: 2 }}
           >
             {response.answers.join(", ")}
           </Typography>
-          {poll.comments && <Divider orientation="vertical" flexItem />}
+          {poll.comments && !smallScreen && (
+            <Divider orientation="vertical" flexItem />
+          )}
+          {poll.comments && smallScreen && <Divider flexItem sx={{ my: 2 }} />}
           {poll.comments && (
-            <Typography width="50%" sx={{ wordBreak: "break-word", px: 2 }}>
+            <Typography
+              width={{ xs: "100%", sm: "50%" }}
+              sx={{ wordBreak: "break-word", px: 2 }}
+            >
               {response.comment}
             </Typography>
           )}

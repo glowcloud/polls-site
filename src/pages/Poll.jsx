@@ -24,20 +24,20 @@ const Poll = () => {
   return (
     <Box
       component={Paper}
-      mt={
-        poll &&
-        !poll.closed &&
-        (!poll.closeDate ||
-          (poll.closeDate && poll.closeDate.toDate() - Date.now() > 0))
-          ? 10
-          : { xs: 30, xl: 35 }
-      }
       mx={{ xs: 2, sm: 5, md: 20, lg: 35, xl: 55 }}
       p={2}
+      my={
+        !poll ||
+        (poll &&
+          (poll.closed ||
+            (poll.closeDate && poll.closeDate.toDate() - Date.now() < 0)))
+          ? { xs: 15, sm: 23, md: 25, lg: 30, xl: 35 }
+          : 3
+      }
     >
       {/* NOT FOUND */}
       {!poll && (
-        <Typography variant="h6" textAlign="center" color="red">
+        <Typography variant="h6" textAlign="center" color="red" py={1}>
           Poll not found
         </Typography>
       )}
@@ -50,6 +50,7 @@ const Poll = () => {
           fontWeight="bold"
           gutterBottom
           px={2}
+          py={1}
         >
           {poll.title}
         </Typography>
@@ -85,7 +86,9 @@ const Poll = () => {
             mt={2}
             onClick={() => navigate(`/polls/${id}/results`)}
           >
-            <Button variant="outlined">See results</Button>
+            <Button variant="outlined" sx={{ my: 1 }}>
+              See results
+            </Button>
           </Box>
         )}
     </Box>

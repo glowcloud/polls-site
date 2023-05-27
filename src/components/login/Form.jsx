@@ -46,7 +46,7 @@ const Form = ({ isLogin }) => {
           };
           localStorage.setItem("pollUser", JSON.stringify(user));
           dispatch({ type: "LOGIN", payload: user });
-          navigate("/");
+          navigate("/polls");
         }
       } else {
         if (usersSnap.docs.length !== 0) {
@@ -56,7 +56,7 @@ const Form = ({ isLogin }) => {
           const user = { ...formState, id: userRef.id };
           localStorage.setItem("pollUser", JSON.stringify(user));
           dispatch({ type: "LOGIN", payload: user });
-          navigate("/");
+          navigate("/polls");
         }
       }
     }

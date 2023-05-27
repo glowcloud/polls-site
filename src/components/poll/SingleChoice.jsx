@@ -22,6 +22,9 @@ const SingleChoice = ({ poll, setFormState, error }) => {
             <FormControlLabel
               key={index}
               value={answer}
+              sx={{
+                wordBreak: "break-word",
+              }}
               control={<Radio />}
               label={answer}
             />

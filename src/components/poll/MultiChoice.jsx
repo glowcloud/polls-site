@@ -25,6 +25,9 @@ const MultiChoice = ({ poll, formState, setFormState, error }) => {
             <FormControlLabel
               key={index}
               label={answer}
+              sx={{
+                wordBreak: "break-word",
+              }}
               control={
                 <Checkbox
                   name={answer}

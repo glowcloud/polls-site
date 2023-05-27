@@ -6,13 +6,23 @@ const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
 
   return (
-    <Box my={{ xs: 15, xl: 20 }}>
+    <Box
+      sx={{
+        position: "absolute",
+        top: "50%",
+        left: "50%",
+        marginRight: "-50%",
+        transform: "translate(-50%, -50%)",
+        width: "100%",
+      }}
+    >
       <Typography
         variant="h5"
         textAlign="center"
         fontWeight="bold"
         gutterBottom
         pb={2}
+        px={2}
       >
         {isLogin ? "Log in to your account" : "Create an account"}
       </Typography>

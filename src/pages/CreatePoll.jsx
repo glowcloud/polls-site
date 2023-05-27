@@ -3,12 +3,13 @@ import Form from "../components/create/Form";
 
 const CreatePoll = () => {
   return (
-    <Box my={5}>
+    <Box my={2}>
       <Typography
         variant="h5"
         textAlign="center"
         fontWeight="bold"
         gutterBottom
+        pb={2}
       >
         Create a Poll
       </Typography>
