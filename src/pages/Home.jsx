@@ -10,7 +10,7 @@ const Home = () => {
       flexDirection="column"
       alignItems="center"
       justifyContent="center"
-      height="85vh"
+      height={{ xs: "75vh", sm: "85vh" }}
       px={{ xs: 2, sm: 10, md: 0 }}
     >
       <Typography
