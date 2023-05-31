@@ -39,7 +39,11 @@ const Navbar = () => {
   };
 
   return (
-    <AppBar component="nav" position="fixed" sx={{ px: { lg: 5 }, top: -1 }}>
+    <AppBar
+      component="nav"
+      position="fixed"
+      sx={{ height: 64, px: { lg: 5 }, top: -1 }}
+    >
       <NavToolbar
         navItems={navItems}
         user={user}

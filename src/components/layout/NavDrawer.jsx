@@ -18,7 +18,7 @@ const NavDrawer = ({
         width: 240,
         "& .MuiDrawer-paper": {
           width: 300,
-          mt: { xs: 7, sm: 8 },
+          mt: 8,
           boxSizing: "border-box",
         },
       }}
@@ -42,7 +42,7 @@ const NavDrawer = ({
             />
           </ListItemButton>
         ))}
-        
+
         {/* LOGOUT */}
         {user && (
           <ListItemButton sx={{ px: 3 }}>

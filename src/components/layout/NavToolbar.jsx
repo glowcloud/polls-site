@@ -38,11 +38,15 @@ const NavToolbar = ({
             key={item.title}
             color="inherit"
             sx={{
+              height: "100%",
+              borderRadius: 0,
+              color: "white",
               mx: 1,
               px: 2,
               "&:hover": {
-                color: "black",
-                backgroundColor: "white",
+                background: "none",
+                borderBottom: "3px solid white",
+                pt: 1.2,
               },
             }}
             onClick={() => navigate(item.page)}
@@ -55,12 +59,15 @@ const NavToolbar = ({
         {user && (
           <Button
             sx={{
+              height: "100%",
+              borderRadius: 0,
+              color: "white",
               mx: 1,
               px: 2,
-              color: "white",
               "&:hover": {
-                color: "black",
-                backgroundColor: "white",
+                background: "none",
+                borderBottom: "3px solid white",
+                pt: 1.2,
               },
             }}
             onClick={handleLogout}
