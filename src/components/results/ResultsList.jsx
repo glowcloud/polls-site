@@ -24,7 +24,7 @@ const ResultsList = ({ data, responses }) => {
         }}
       />
       {sortedData.map((item) => (
-        <Box key={item.id} container spacing={1} my={1}>
+        <Box key={item.id} my={1}>
           <Box display="flex" justifyContent="space-between" mx={2}>
             <Typography sx={{ wordBreak: "break-word", pr: 2 }}>
               {item.id}

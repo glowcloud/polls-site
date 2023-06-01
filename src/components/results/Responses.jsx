@@ -1,4 +1,4 @@
-import { Box, Divider } from "@mui/material";
+import { Box, Divider, useMediaQuery } from "@mui/material";
 import { useState, useEffect } from "react";
 
 import PieChart from "./PieChart";
@@ -6,16 +6,7 @@ import ResponsesList from "./ResponsesList";
 import ResultsList from "./ResultsList";
 
 const Responses = ({ poll, responses }) => {
-  const [smallScreen, setSmallScreen] = useState(window.innerWidth < 600);
-
-  useEffect(() => {
-    const getScreen = () => {
-      setSmallScreen(window.innerWidth < 600);
-    };
-
-    window.addEventListener("resize", getScreen);
-    return () => window.removeEventListener("resize", getScreen);
-  }, []);
+  const smallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
 
   const makeData = () => {
     const data = [];
