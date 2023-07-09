@@ -1,4 +1,4 @@
-# Easy Polls
+# [Easy Polls](https://easy-polls.vercel.app)
 
 A website for creating and answering polls, and viewing their results, with a simple signup and login (non-secure, made to showcase different functionalities).
 
